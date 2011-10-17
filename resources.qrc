@@ -1,0 +1,7 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+<file alias="dodaj.png">icons/dodaj.png</file>
+<file alias="losuj.png">icons/losuj.png</file>
+<file alias="zamknij.png">icons/zamknij.png</file>
+</qresource>
+</RCC>

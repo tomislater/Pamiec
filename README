@@ -12,3 +12,6 @@ pole tekstowe i rozdzielając przecinkiem. Słowa zostaną od razu dodane do sł
 trakcie trwania programu oraz od razu zostaną zapisane w ww. pliku.
 
 To tyle. Proste? Takie miało być.
+
+18-10-2011
+Zmieniłem uruchamianie. Teraz program odpala się z QMainWindow, a nie jak wcześniej z QDialog. Dodałem również ikonki i menu :)
