@@ -5,13 +5,17 @@ Metoda "zakładek". Zainteresowanych odsyłam do książki "Pamięć na zawołan
 
 W skrócie o co chodzi.
 Malutki programik, lecz bardzo przydatny. Pobiera słowa z pliku "slowa.txt" i wyświetla
-dwadzieścia losowych słów wraz z przypisaną do niej liczbą. Przeczytasz książkę to się
+dwadzieścia losowych (lub ile wsakżesz) słów wraz z przypisaną do niej liczbą. Przeczytasz książkę to się
 dowiesz po co ;)
-Jeżeli znudzi Ci się już losowanie tych samych słów, możesz je dodać, wpisując jest w 
-pole tekstowe i rozdzielając przecinkiem. Słowa zostaną od razu dodane do słownika w
-trakcie trwania programu oraz od razu zostaną zapisane w ww. pliku.
+Jeżeli znudzi Ci się już losowanie tych samych słów, możesz je dodać za pomocą odpowiedniej komendy.
+Wszystko w pomocy: python pamiec.py pomoc
+
 
 To tyle. Proste? Takie miało być.
+
+20-10-2011
+Hehe. Teraz to nabroiłem! Wywaliłem w cholerę całe GUI. Wszystko jest obsługiwane z lini poleceń. Trochę się napracowałem
+jeżeli chodzi o kodowanie znaków... Ale jest już to rozwiązane.
 
 18-10-2011
 Zmieniłem uruchamianie. Teraz program odpala się z QMainWindow, a nie jak wcześniej z QDialog. Dodałem również ikonki i menu :)
