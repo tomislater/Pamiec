@@ -8,7 +8,7 @@ Możesz podać ile słów ma wyświetlić. Domyślnie jest to liczba 20.
 @author: swiety
 '''
 import codecs, os, random
-__version__ = '0.2.0'
+__version__ = '0.2.1'
 
 class Pamiec(object):
   
@@ -52,12 +52,12 @@ class Pamiec(object):
   
   def zaladuj_slownik(self):
     self.slownik = {}
-    for slowo in codecs.open(os.path.dirname(__file__) + 'slowa.txt', encoding='utf-8'):
+    for slowo in codecs.open(os.path.abspath(__file__)[:os.path.abspath(__file__).rfind('/')+1] + 'slowa.txt', encoding='utf-8'):
       self.slownik[slowo[:-1]] = ''
   
   
   def zapisz_slownik(self):
-    slownik = codecs.open(os.path.dirname(__file__) + 'slowa.txt', 'w', encoding='utf-8')
+    slownik = codecs.open(os.path.abspath(__file__)[:os.path.abspath(__file__).rfind('/')+1] + 'slowa.txt', 'w', encoding='utf-8')
     for slowo in self.slownik:
       slownik.write('%s\n' % slowo)
     slownik.close()
