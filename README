@@ -13,6 +13,12 @@ Wszystko w pomocy: python pamiec.py pomoc
 
 To tyle. Proste? Takie miało być.
 
+26-10-2011
+Zmieniłem sposób przechwytywania poleceń oraz rozbudowałem trochę helpa.
+
+21-10-2011
+Dodałem nowe słowa. Pojawiła się nowa instrukcja if. Jeżeli użytkownik poda za dużą ilość słów do losowania, zostanie o tym poinformowany i w zamian za to, zostanie wyświetlony cały słownik.
+
 20-10-2011
 Hehe. Teraz to nabroiłem! Wywaliłem w cholerę całe GUI. Wszystko jest obsługiwane z lini poleceń.
 Trochę się napracowałem jeżeli chodzi o kodowanie znaków... Ale jest już to rozwiązane.

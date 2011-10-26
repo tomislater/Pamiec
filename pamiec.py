@@ -7,47 +7,32 @@ Możesz podać ile słów ma wyświetlić. Domyślnie jest to liczba 20.
 
 @author: swiety
 '''
-import codecs, os, random
-__version__ = '0.2.1'
+import codecs, os, random, getopt
+__version__ = '0.2.3'
 
 class Pamiec(object):
   
-  def __init__(self, args):
+  def __init__(self, argv):
     try:
       self.zaladuj_slownik()
     except IOError:
       print u'Prawdopodobnie nie robisz tego tak jak trzeba. Uruchom program z lini poleceń.'
     
     try:
-      self.funkcja = args[0]
-      
-      if self.funkcja == 'losuj':
-        try:
-          self.wartosc = int(args[1])
-        except IndexError:
-          self.wartosc = 20
-        self.losuj(self.wartosc)
-        
-      elif self.funkcja == 'dodaj':
-        try:
-          self.wartosc = args[1]
-          self.dodaj(self.wartosc)
-        except IndexError:
-          print u'\nNie podałeś żadnych słów.'
-          self.pomoc()
-      
-      elif self.funkcja == 'pomoc':
-        self.pomoc()
-      
-      elif self.funkcja == 'wersja':
-        print '\nWersja:', __version__, '\n'
-          
-      else:
-        print u'\nNieznana komenda.'
-        self.pomoc()
-    except IndexError:
-      print u'\nNie podałeś żadnej komendy'
+      opts, args = getopt.getopt(argv, 'pl:d:w', ['pomoc', 'losuj=', 'dodaj=', 'wersja'])
+    except getopt.GetoptError:
       self.pomoc()
+      sys.exit()
+
+    for opt, arg in opts:
+      if opt in ('-p', '--pomoc'):
+        self.pomoc()
+      elif opt in ('-l', '--losuj'):
+        self.losuj(int(arg))
+      elif opt in ('d', '--dodaj'):
+        self.dodaj(arg)
+      elif opt in ('--wersja', '-w'):
+        print 'Wersja programu:'.rjust(23), __version__, '\n'
   
   
   def zaladuj_slownik(self):
@@ -85,15 +70,19 @@ class Pamiec(object):
   
   def pomoc(self):
     print u"""\nDostępne polecenia:
-    1. losuj liczba
-    2. dodaj "słowa,jakieś,tam"
-    -----------------------
-    -----------------------
-    Przykład:
-    python pamiec.py losuj 30 - losuje 30 słów. Jeżeli nie podasz liczby, domyślnie wyświetli 20 wyrazów.
-    python pamiec.py dodaj "cześć,witam,rower,deskorolka,pompka" - dodaje słowa.
-    
-    Uwaga! Pamiętaj, aby rozdzielać słowa przecinkami.\n\n"""
+    -l lub --losuj
+              losuje podaną liczbę słów
+              -l 30 ----- losuje 30 liczb
+              --losuj 20 ----- losuje 20 liczb
+    -d lub --dodaj
+              dodaje podane słowa
+              -d 'mistyfikacja,dupa,biskup' ----- dodaje podane słowa
+              --dodaj 'płyta,ptaszek,bazylia' ----- również dodaje podane słowa
+                        Uwaga! Pamiętaj, aby rozdzielać słowa przecinkami.
+    -p lub --pomoc
+              pomoc :)
+    -w lub --wersja
+              wyświetla numer aktualnej wersji\n"""
 
 if __name__ == '__main__':
   import sys
