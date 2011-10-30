@@ -8,7 +8,7 @@ Możesz podać ile słów ma wyświetlić. Domyślnie jest to liczba 20.
 @author: swiety
 '''
 import codecs, os, random, getopt
-__version__ = '0.2.3'
+__version__ = '0.2.4'
 
 class Pamiec(object):
   
@@ -20,11 +20,13 @@ class Pamiec(object):
     
     try:
       opts, args = getopt.getopt(argv, 'pl:d:w', ['pomoc', 'losuj=', 'dodaj=', 'wersja'])
+      print opts, args
     except getopt.GetoptError:
       self.pomoc()
       sys.exit()
 
     for opt, arg in opts:
+      print opt, arg
       if opt in ('-p', '--pomoc'):
         self.pomoc()
       elif opt in ('-l', '--losuj'):
@@ -53,7 +55,7 @@ class Pamiec(object):
       print '\n|', '-'*23, '|'
       for x in xrange(liczba_slow):
         slowo = random.choice(self.slownik.keys())
-        print str(x+1).ljust(3), slowo
+        print '|'.ljust(1), str(x+1).ljust(3), slowo
         del self.slownik[slowo]
       print '|', '-'*23, '|\n'
     except IndexError:
