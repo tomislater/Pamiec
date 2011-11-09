@@ -259,6 +259,14 @@ bułki
 afryka
 strach
 zakaz
+rynek
+owoc
+wózek
+kowal
+rondo
+gumki
+łoś
+klucze
 druid
 bułka
 wifi
