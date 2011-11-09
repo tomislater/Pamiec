@@ -12,6 +12,8 @@ Wszystko w pomocy: python pamiec.py pomoc
 
 
 To tyle. Proste? Takie miało być.
+09-11-2011
+Przepraszam za małe niedopatrzenie. Był błąd podczas dodawania słów do pliku. W zasadzie to bardziej z przechwytywaniem komendy "-d". Podczas gdy komenda "--dodaj" działała, "-d" nie działała z tego względu, iż przy ifie, zamiast szukać "-d", prze pomyłkę wpisałem "d" zamiast "-d". Naprawione. Zauważyłem to gdy dodałem dośc sporą liczbę słów i nic się nie działo. Myślałem, że coś, ze ścieżką do pliku się stało albo błąd w funkcji jest, a to taki mały psikus się okazał. Dodatkowo dorzucam garść nowych słów. Cześć!
 
 07-11-2011
 Mała, nieistotna zmiana.

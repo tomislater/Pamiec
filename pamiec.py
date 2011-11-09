@@ -25,7 +25,7 @@ class Pamiec(object):
         self.pomoc()
       elif opt in ('-l', '--losuj'):
         self.losuj(int(arg))
-      elif opt in ('d', '--dodaj'):
+      elif opt in ('-d', '--dodaj'):
         self.dodaj(arg)
       elif opt in ('--wersja', '-w'):
         print 'Wersja programu:'.rjust(23), __version__, '\n'
