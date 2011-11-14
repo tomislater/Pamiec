@@ -3,33 +3,48 @@ Cześć. Program został stworzony z potrzeby samodoskonalenia się.
 Od dłuższego czasu używam różnych metod do ćwiczenia pamięci, a tutaj jest właśnie jedna z nich.
 Metoda "zakładek". Zainteresowanych odsyłam do książki "Pamięć na zawołanie" - Tony Buzan.
 
-W skrócie o co chodzi.
-Malutki programik, lecz bardzo przydatny. Pobiera słowa z pliku "slowa.txt" i wyświetla
-dwadzieścia losowych (lub ile wsakżesz) słów wraz z przypisaną do niej liczbą. Przeczytasz książkę to się
-dowiesz po co ;)
+O co chodzi?
+Malutki programik, lecz bardzo przydatny. Pobiera słowa z pliku "slowa.txt" i wyświetla zadaną przez
+użytkownika ilość słów wraz z przypisaną do niej liczbą. Przeczytasz książkę to się dowiesz po co ;)
 Jeżeli znudzi Ci się już losowanie tych samych słów, możesz je dodać za pomocą odpowiedniej komendy.
-Wszystko w pomocy: python pamiec.py pomoc
+Wszystko w pomocy: pamiec.py --pomoc lub pamiec.py -p
+
+14-11-2011
+Lekka zmiana od strony technicznej. Możesz teraz dodawać słowa oraz wyświetlić dodane słowa od razu. Nie musisz ponownie odpalać skryptu.
+Jest tylko jeden warunek. Aby wy świetlić dodane słowa, komenda dodawania musi poprzedzać komendę losowania. Logiczne, ale wiadomo jak to czasami jest :)
+
+Przykład: python pamiec.py -d 'wrona,sroka,dupa,biskup' -l 15
+Dodamy do pliku te cztery słowa po czym wylosujemy 15 różnych słów z pliku (wraz z tymi, które dodaliśmy).
+Wcześniej to nie przechodziło ponieważ ładowałem słownik przy odpalaniu skryptu. Natomiast teraz ładuje się osobno przy dodawaniu i osobno przy losowaniu.
 
 
-To tyle. Proste? Takie miało być.
 09-11-2011
-Przepraszam za małe niedopatrzenie. Był błąd podczas dodawania słów do pliku. W zasadzie to bardziej z przechwytywaniem komendy "-d". Podczas gdy komenda "--dodaj" działała, "-d" nie działała z tego względu, iż przy ifie, zamiast szukać "-d", prze pomyłkę wpisałem "d" zamiast "-d". Naprawione. Zauważyłem to gdy dodałem dośc sporą liczbę słów i nic się nie działo. Myślałem, że coś, ze ścieżką do pliku się stało albo błąd w funkcji jest, a to taki mały psikus się okazał. Dodatkowo dorzucam garść nowych słów. Cześć!
+Przepraszam za małe niedopatrzenie. Był błąd podczas dodawania słów do pliku. W zasadzie to bardziej z przechwytywaniem komendy "-d".
+Podczas gdy komenda "--dodaj" działała, "-d" nie działała z tego względu, iż przy ifie, zamiast szukać "-d", prze pomyłkę wpisałem "d" zamiast "-d".
+Naprawione. Zauważyłem to gdy dodałem dośc sporą liczbę słów i nic się nie działo.
+Myślałem, że coś, ze ścieżką do pliku się stało albo błąd w funkcji jest, a to taki mały psikus się okazał. Dodatkowo dorzucam garść nowych słów. Cześć!
+
 
 07-11-2011
 Mała, nieistotna zmiana.
 
+
 30-10-2011
 Zmieniłem sposób wyświetlania napisów. Jest teraz bardziej przyjemny.
+
 
 26-10-2011
 Zmieniłem sposób przechwytywania poleceń oraz rozbudowałem trochę helpa.
 
+
 21-10-2011
 Dodałem nowe słowa. Pojawiła się nowa instrukcja if. Jeżeli użytkownik poda za dużą ilość słów do losowania, zostanie o tym poinformowany i w zamian za to, zostanie wyświetlony cały słownik.
+
 
 20-10-2011
 Hehe. Teraz to nabroiłem! Wywaliłem w cholerę całe GUI. Wszystko jest obsługiwane z lini poleceń.
 Trochę się napracowałem jeżeli chodzi o kodowanie znaków... Ale jest już to rozwiązane.
+
 
 18-10-2011
 Zmieniłem uruchamianie. Teraz program odpala się z QMainWindow, a nie jak wcześniej z QDialog. Dodałem również ikonki i menu :)

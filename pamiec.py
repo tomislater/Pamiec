@@ -4,16 +4,10 @@
 @author: tomislater@gmail.com
 '''
 import codecs, os, random, getopt
-__version__ = '0.2.5'
+__version__ = '0.2.8'
 
 class Pamiec(object):
-  
-  def __init__(self, argv):
-    try:
-      self.zaladuj_slownik()
-    except IOError:
-      print u'Prawdopodobnie nie robisz tego tak jak trzeba. Uruchom program z lini poleceń.'
-    
+  def __init__(self, argv): 
     try:
       opts, args = getopt.getopt(argv, 'pl:d:w', ['pomoc', 'losuj=', 'dodaj=', 'wersja'])
     except getopt.GetoptError:
@@ -23,19 +17,27 @@ class Pamiec(object):
     for opt, arg in opts:
       if opt in ('-p', '--pomoc'):
         self.pomoc()
-      elif opt in ('-l', '--losuj'):
-        self.losuj(int(arg))
       elif opt in ('-d', '--dodaj'):
+        self.zaladuj_slownik()
         self.dodaj(arg)
+      elif opt in ('-l', '--losuj'):
+        try:
+          self.zaladuj_slownik()
+          self.losuj(int(arg))
+        except ValueError:
+          print '\nMusisz podać liczbę!\n'
       elif opt in ('--wersja', '-w'):
         print 'Wersja programu:'.rjust(23), __version__, '\n'
   
   
   def zaladuj_slownik(self):
-    self.slownik = {}
-    for slowo in codecs.open(os.path.abspath(__file__)[:os.path.abspath(__file__).rfind('/')+1] + 'slowa.txt', encoding='utf-8'):
-      self.slownik[slowo[:-1]] = ''
-  
+    try:
+      self.slownik = {}
+      for slowo in codecs.open(os.path.abspath(__file__)[:os.path.abspath(__file__).rfind('/')+1] + 'slowa.txt', encoding='utf-8'):
+        self.slownik[slowo[:-1]] = ''
+    except IOError:
+      print u'Prawdopodobnie nie robisz tego tak jak trzeba. Uruchom program z lini poleceń.'
+      
   
   def zapisz_slownik(self):
     slownik = codecs.open(os.path.abspath(__file__)[:os.path.abspath(__file__).rfind('/')+1] + 'slowa.txt', 'w', encoding='utf-8')
@@ -45,14 +47,17 @@ class Pamiec(object):
       
   
   def losuj(self, liczba_slow):
+    import copy
+    slownikKopia = copy.copy(self.slownik) 
     try:
       print '\n|', '-'*23, '|'
       for liczbaSlowa in xrange(liczba_slow):
-        slowo = random.choice(self.slownik.keys())
+        slowo = random.choice(slownikKopia.keys())
         print '|'.ljust(1), str(liczbaSlowa+1).ljust(3), slowo
-        del self.slownik[slowo]
+        del slownikKopia[slowo]
       print '|', '-'*23, '|\n'
     except IndexError:
+      print '|', '-'*23, '|'
       print '\nSprawdź, plik. Najprawdopodobniej, nie ma w nim tyle słów.\nWyświetliłem ile dało radę.\n'
 
   
@@ -79,6 +84,8 @@ class Pamiec(object):
               pomoc :)
     -w lub --wersja
               wyświetla numer aktualnej wersji\n"""
+              
+              
 
 if __name__ == '__main__':
   import sys
