@@ -9,6 +9,10 @@ użytkownika ilość słów wraz z przypisaną do niej liczbą. Przeczytasz ksi�
 Jeżeli znudzi Ci się już losowanie tych samych słów, możesz je dodać za pomocą odpowiedniej komendy.
 Wszystko w pomocy: pamiec.py --pomoc lub pamiec.py -p
 
+
+07-12-2011
+Dodalem kilkanascie slow
+
 14-11-2011
 Lekka zmiana od strony technicznej. Możesz teraz dodawać słowa oraz wyświetlić dodane słowa od razu. Nie musisz ponownie odpalać skryptu.
 Jest tylko jeden warunek. Aby wy świetlić dodane słowa, komenda dodawania musi poprzedzać komendę losowania. Logiczne, ale wiadomo jak to czasami jest :)
