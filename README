@@ -4,22 +4,40 @@ Od dłuższego czasu używam różnych metod do ćwiczenia pamięci, a tutaj jes
 Metoda "zakładek". Zainteresowanych odsyłam do książki "Pamięć na zawołanie" - Tony Buzan.
 
 O co chodzi?
-Malutki programik, lecz bardzo przydatny. Pobiera słowa z pliku "slowa.txt" i wyświetla zadaną przez
-użytkownika ilość słów wraz z przypisaną do niej liczbą. Przeczytasz książkę to się dowiesz po co ;)
-Jeżeli znudzi Ci się już losowanie tych samych słów, możesz je dodać za pomocą odpowiedniej komendy.
-Wszystko w pomocy: pamiec.py --pomoc lub pamiec.py -p
+Program posiada kilka funkcji. Główne to dodawanie i wyświetlanie słów.
+Póki co zaimplementowałem trzy metody:
+1. ŁMS - Łańcuchowa metoda skojarzeń
+2. Zakładki obrazkowe
+3. Rymowanki liczbowe
+ŁMS wywołuje się osobno, natomiast 2 i 3 metodę wywołuje się razem.
+Tak postanowiłem ponieważ w 2 i 3 metodzie korzysta się z liczb, a bezsensu je wywoływać osobnymi poleceniami. 
+
+
+9-12-2011
+Całkowicie nowa wersja oznaczona numerem 0.3!
+Jest jedna klasa "Slownik", która posiada 5 metod.
+zaladuj_slownik - odpowiada za wczytanie pliku "slowa.txt" i przekazaniu słów do "słownika pythonowego" po wywołaniu klasy słownika.
+dodaj - dodaje słowa do "pythonowego słownika".
+zapisz_slownik - zapisuje "pythonowy słownik" do pliku "slowa.txt".
+_or - wyświetla słowa do metod "Zakładki obrazkowe" lub "Rymowanki liczbowe". Zależy jak zinterpretuje to użytkownik.
+lms - wyświetla słowa do metody "Łańcuchowa metoda skojarzeń".
 
 
 07-12-2011
 Dodalem kilkanascie slow
 
+
 14-11-2011
-Lekka zmiana od strony technicznej. Możesz teraz dodawać słowa oraz wyświetlić dodane słowa od razu. Nie musisz ponownie odpalać skryptu.
-Jest tylko jeden warunek. Aby wy świetlić dodane słowa, komenda dodawania musi poprzedzać komendę losowania. Logiczne, ale wiadomo jak to czasami jest :)
+Lekka zmiana od strony technicznej.
+Możesz teraz dodawać słowa oraz wyświetlić dodane słowa od razu.
+Nie musisz ponownie odpalać skryptu.
+Jest tylko jeden warunek. Aby wy świetlić dodane słowa, komenda dodawania musi poprzedzać komendę losowania.
+Logiczne, ale wiadomo jak to czasami jest :)
 
 Przykład: python pamiec.py -d 'wrona,sroka,dupa,biskup' -l 15
 Dodamy do pliku te cztery słowa po czym wylosujemy 15 różnych słów z pliku (wraz z tymi, które dodaliśmy).
-Wcześniej to nie przechodziło ponieważ ładowałem słownik przy odpalaniu skryptu. Natomiast teraz ładuje się osobno przy dodawaniu i osobno przy losowaniu.
+Wcześniej to nie przechodziło ponieważ ładowałem słownik przy odpalaniu skryptu.
+Natomiast teraz ładuje się osobno przy dodawaniu i osobno przy losowaniu.
 
 
 09-11-2011
