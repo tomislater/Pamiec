@@ -16,7 +16,7 @@ Tak postanowiłem ponieważ w 2 i 3 metodzie korzysta się z liczb, a bezsensu j
 9-12-2011
 Całkowicie nowa wersja oznaczona numerem 0.3!
 Jest jedna klasa "Slownik", która posiada 5 metod.
-zaladuj_slownik - odpowiada za wczytanie pliku "slowa.txt" i przekazaniu słów do "słownika pythonowego" po wywołaniu klasy słownika.
+zaladuj_slownik - odpowiada za wczytanie pliku "slowa.txt" i przekazaniu słów do "słownika pythonowego" po wywołaniu klasy "Slownik".
 dodaj - dodaje słowa do "pythonowego słownika".
 zapisz_slownik - zapisuje "pythonowy słownik" do pliku "slowa.txt".
 _or - wyświetla słowa do metod "Zakładki obrazkowe" lub "Rymowanki liczbowe". Zależy jak zinterpretuje to użytkownik.
