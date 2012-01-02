@@ -3,7 +3,7 @@
 __author__ =  'tomislater@gmail.com'
 
 import codecs, os, random, sys
-__version__ = '0.4'
+__version__ = '0.4.1'
 
 class Slownik(object):
   u"""Tworzy słownik w którym przechowywane są słowa."""
@@ -75,6 +75,9 @@ class Slownik(object):
 
 class ListaLiczb(object):
   _listaLiczb = []
+  slownikDlugosci = {3: (100, 999), 4: (1000, 9999), 5: (10000, 99999), 6: (100000, 999999), 7: (1000000, 9999999),
+                     8: (10000000, 99999999), 9: (100000000, 999999999),}
+
   def __init__(self, ilosc, dlugosc):
     zakres = self.zwrocZakres(dlugosc)
     self.ilosc = ilosc
@@ -82,21 +85,9 @@ class ListaLiczb(object):
     self.wyswietl(dlugosc)
 
   def zwrocZakres(self, dlugosc):
-    if dlugosc == 3:
-      return (100, 999)
-    elif dlugosc == 4:
-      return (1000, 9999)
-    elif dlugosc == 5:
-      return (10000, 99999)
-    elif dlugosc == 6:
-      return (100000, 999999)
-    elif dlugosc == 7:
-      return (1000000, 9999999)
-    elif dlugosc == 8:
-      return (10000000, 99999999)
-    elif dlugosc == 9:
-      return (100000000, 999999999)
-    else:
+    try:
+      return self.slownikDlugosci[dlugosc]
+    except KeyError:
       print >>sys.stderr, 'Liczba długości musi mieścić się w przedziale <3;9>\n'
       pomoc()
       sys.exit(2)
@@ -139,6 +130,10 @@ if __name__ == '__main__':
     try:
       ilosc = int(sys.argv[2])
       dlugosc = int(sys.argv[3])
+      if ilosc == 0:
+        print >>sys.stderr, 'Argument ilość powinien wynosić więcej niż 0...\n'
+        pomoc()
+        sys.exit(2)
     except ValueError:
       print >>sys.stderr, 'Argumentami muszą być liczby\n'
       pomoc()

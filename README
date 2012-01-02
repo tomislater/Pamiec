@@ -15,6 +15,11 @@ Tak postanowiłem ponieważ w 2 i 3 metodzie korzysta się z liczb, a bezsensu j
 Dodatkową opcją jest generowanie liczb. Więcej w pomocy. (python pamiec.py POMOC)
 
 
+
+2-01-2012
+Wprowadziłem małą poprawkę. Metoda zwrocZakres klasy ListaLiczb nie zawiera teraz warunków if.
+Zamiast tego tworzy w momencie wywołania klasy słownik z którego funkcja korzysta. Dzięki temu program wykonuje się szybciej.
+
 1-01-2012
 Nowy rok i co? Nowa wersja oznaczona numerem 0.4! Leczyłem dzisiaj kaca po sylwestrze i nic mi się nie chciało robić.
 Miałem się położyć wcześniej spać dzisiaj, ale postanowiłem, że dodam nową funkcjonalność do programu i oto jest.
