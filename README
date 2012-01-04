@@ -15,6 +15,8 @@ Tak postanowiłem ponieważ w 2 i 3 metodzie korzysta się z liczb, a bezsensu j
 Dodatkową opcją jest generowanie liczb. Więcej w pomocy. (python pamiec.py POMOC)
 
 
+4-01-2012
+Mała zmiana przy odczytywaniu oraz zapisywaniu pliku. Dodałem również kilka nowych słów.
 
 2-01-2012
 Wprowadziłem małą poprawkę. Metoda zwrocZakres klasy ListaLiczb nie zawiera teraz warunków if.

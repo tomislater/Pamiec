@@ -3,7 +3,7 @@
 __author__ =  'tomislater@gmail.com'
 
 import codecs, os, random, sys
-__version__ = '0.4.1'
+__version__ = '0.4.2'
 
 class Slownik(object):
   u"""Tworzy słownik w którym przechowywane są słowa."""
@@ -16,7 +16,7 @@ class Slownik(object):
     u"""Ładuje słownik do 'słownika pythonowego'"""
     try:
       self.slownik = {}
-      for slowo in codecs.open(os.path.abspath(__file__)[:os.path.abspath(__file__).rfind('/')+1] + 'slowa.txt', encoding='utf-8'):
+      for slowo in codecs.open(os.path.join(os.path.dirname(__file__), 'slowa.txt'), encoding='utf-8'):
         self.slownik[slowo[:-1]] = ''
     except IOError:
       print u'Prawdopodobnie nie robisz tego tak jak trzeba. Uruchom program z lini poleceń.'
@@ -33,7 +33,7 @@ class Slownik(object):
   
   def zapisz_slownik(self):
     u"""Zapisuje 'pythonowy słownik' do pliku"""
-    slownik = codecs.open(os.path.abspath(__file__)[:os.path.abspath(__file__).rfind('/')+1] + 'slowa.txt', 'w', encoding='utf-8')
+    slownik = codecs.open(os.path.join(os.path.dirname(__file__), 'slowa.txt'), 'w', encoding='utf-8')
     for slowo in self.slownik:
       slownik.write('%s\n' % slowo)
 
@@ -82,7 +82,7 @@ class ListaLiczb(object):
     zakres = self.zwrocZakres(dlugosc)
     self.ilosc = ilosc
     self.stworzRandomy(zakres)
-    self.wyswietl(dlugosc)
+    self.wyswietl()
 
   def zwrocZakres(self, dlugosc):
     try:
@@ -98,9 +98,8 @@ class ListaLiczb(object):
       if rLiczba not in self._listaLiczb:
         self._listaLiczb.append(rLiczba)
       self.ilosc -= 1
-    return
 
-  def wyswietl(self, dlugosc):
+  def wyswietl(self):
     for liczba in self._listaLiczb:
       print "\n    {0}".format(liczba)
     print
