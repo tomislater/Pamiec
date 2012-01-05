@@ -1,49 +1,59 @@
 # -*- coding: utf-8 -*-
-
 __author__ =  'tomislater@gmail.com'
-
 import codecs, os, random, sys
-__version__ = '0.4.2'
+__version__ = '0.4.3'
+
+
 
 class Slownik(object):
-  u"""Tworzy słownik w którym przechowywane są słowa."""
-  def __init__(self):
-    u"""Wywołuje ładowanie słownik do 'słownika pythonowego'"""
-    self.zaladuj_slownik() 
+  """
+  Tworzy słownik w którym przechowywane są słowa.
+  """
 
+  def __init__(self):
+    """
+    Wywołuje ładowanie słownik do 'słownika pythonowego'
+    """
+    self.zaladuj_slownik()
 
   def zaladuj_slownik(self):
-    u"""Ładuje słownik do 'słownika pythonowego'"""
+    """
+    Ładuje słownik do 'słownika pythonowego'
+    """
+    self.slownik = {}
     try:
-      self.slownik = {}
       for slowo in codecs.open(os.path.join(os.path.dirname(__file__), 'slowa.txt'), encoding='utf-8'):
         self.slownik[slowo[:-1]] = ''
     except IOError:
-      print u'Prawdopodobnie nie robisz tego tak jak trzeba. Uruchom program z lini poleceń.'
-
+      print u'Program nie znalazł pliku słownika. Sprawdź nazwę słownika. Poprawna nazwa to "slowa.txt". Jeżeli go nie ma, to go stwórz.\n'
+      pomoc()
+      sys.exit(2)
 
   def dodaj(self, slowa):
-    u"""Dodaje słowa przechwycone z lini poleceń do 'słonika pythonowego'"""
+    """
+    Dodaje słowa przechwycone z lini poleceń do 'słonika pythonowego'
+    """
     slowa = slowa.split(',')
     for slowo in slowa:
       if slowo != '' and len(slowo) > 1:
         self.slownik[codecs.decode(slowo, 'utf-8')] = ''
     self.zapisz_slownik()
 
-  
   def zapisz_slownik(self):
-    u"""Zapisuje 'pythonowy słownik' do pliku"""
+    """
+    Zapisuje 'pythonowy słownik' do pliku
+    """
     slownik = codecs.open(os.path.join(os.path.dirname(__file__), 'slowa.txt'), 'w', encoding='utf-8')
     for slowo in self.slownik:
       slownik.write('%s\n' % slowo)
 
-
   def _or(self, liczba_slow):
-    u"""Odpowiada za wyświetlanie metod:
-    - zakładki obrazkowe
-    - rymowanki liczbowe"""
-    import copy
-    slownikKopia = copy.copy(self.slownik) 
+    """
+    Odpowiada za wyświetlanie metod:
+      - zakładki obrazkowe
+      - rymowanki liczbowe
+      """
+    slownikKopia = self.stworzKopieSlownika()
     try:
       print '\n|', '-'*19, '|'
       for liczbaSlowa in xrange(liczba_slow):
@@ -52,14 +62,13 @@ class Slownik(object):
         del slownikKopia[slowo]
       print '|', '-'*19, '|\n'
     except IndexError:
-      print '|', '-'*19, '|'
-      print '\nSprawdź, plik. Najprawdopodobniej, nie ma w nim tyle słów.\nWyświetliłem tyle ile było w pliku.\n'
-  
-  
+      self.wyswietlBladIndexError()
+
   def lms(self, liczba_slow):
-    u"""Odpowiada za wyświetlenie metody "Łańcuhowa metoda skojarzeń"""
-    import copy
-    slownikKopia = copy.copy(self.slownik) 
+    """
+    Odpowiada za wyświetlenie metody "Łańcuhowa metoda skojarzeń
+    """
+    slownikKopia = self.stworzKopieSlownika()
     try:
       print '\n|', '-'*19, '|'
       for liczba in xrange(liczba_slow):
@@ -68,12 +77,29 @@ class Slownik(object):
         del slownikKopia[slowo]
       print '|', '-'*19, '|\n'
     except IndexError:
-      print '|', '-'*19, '|'
-      print '\nSprawdź, plik. Najprawdopodobniej, nie ma w nim tyle słów.\nWyświetliłem ile dało radę.\n'
+      self.wyswietlBladIndexError()
+
+  def stworzKopieSlownika(self):
+    """
+    Tworzy kopię słownika.
+    """
+    import copy
+    slownikKopia = copy.copy(self.slownik)
+    return slownikKopia
+
+  def wyswietlBladIndexError(self):
+    """
+    Wyświetla błąd związany z podaniem zbyt dużego zakresu co do ilości słów do wyświetlenia.
+    """
+    print '|', '-'*19, '|'
+    print '\nSprawdź, plik. Najprawdopodobniej, nie ma w nim tyle słów.\nWyświetliłem ile dało radę.\n'
 
 
 
 class ListaLiczb(object):
+  """
+  Klasa odpowiadająca
+  """
   _listaLiczb = []
   slownikDlugosci = {3: (100, 999), 4: (1000, 9999), 5: (10000, 99999), 6: (100000, 999999), 7: (1000000, 9999999),
                      8: (10000000, 99999999), 9: (100000000, 999999999),}
@@ -125,7 +151,7 @@ def pomoc():
   
   
 if __name__ == '__main__':
-  if len(sys.argv) == 4:
+  if len(sys.argv) == 4 and sys.argv[1] == 'LICZBY':
     try:
       ilosc = int(sys.argv[2])
       dlugosc = int(sys.argv[3])
