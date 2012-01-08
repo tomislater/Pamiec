@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ =  'tomislater@gmail.com'
 import codecs, os, random, sys
-__version__ = '0.4.3'
+__version__ = '0.4.4'
 
 
 
@@ -12,13 +12,13 @@ class Slownik(object):
 
   def __init__(self):
     """
-    Wywołuje ładowanie słownik do 'słownika pythonowego'
+    Wywołuje ładowanie słownik do 'słownika pythonowego'.
     """
     self.zaladuj_slownik()
 
   def zaladuj_slownik(self):
     """
-    Ładuje słownik do 'słownika pythonowego'
+    Ładuje słownik do 'słownika pythonowego'.
     """
     self.slownik = {}
     try:
@@ -31,7 +31,7 @@ class Slownik(object):
 
   def dodaj(self, slowa):
     """
-    Dodaje słowa przechwycone z lini poleceń do 'słonika pythonowego'
+    Dodaje słowa przechwycone z lini poleceń do 'słownika pythonowego.'
     """
     slowa = slowa.split(',')
     for slowo in slowa:
@@ -52,7 +52,7 @@ class Slownik(object):
     Odpowiada za wyświetlanie metod:
       - zakładki obrazkowe
       - rymowanki liczbowe
-      """
+    """
     slownikKopia = self.stworzKopieSlownika()
     try:
       print '\n|', '-'*19, '|'
@@ -66,7 +66,7 @@ class Slownik(object):
 
   def lms(self, liczba_slow):
     """
-    Odpowiada za wyświetlenie metody "Łańcuhowa metoda skojarzeń
+    Odpowiada za wyświetlenie metody 'Łańcuhowa metoda skojarzeń'.
     """
     slownikKopia = self.stworzKopieSlownika()
     try:
@@ -98,7 +98,7 @@ class Slownik(object):
 
 class ListaLiczb(object):
   """
-  Klasa odpowiadająca
+  Klasa odpowiadająca utworzenie i wyświetlenie listy liczb.
   """
   _listaLiczb = []
   slownikDlugosci = {3: (100, 999), 4: (1000, 9999), 5: (10000, 99999), 6: (100000, 999999), 7: (1000000, 9999999),
@@ -111,14 +111,21 @@ class ListaLiczb(object):
     self.wyswietl()
 
   def zwrocZakres(self, dlugosc):
+    """
+    Zwraca zakres liczb jakie mają być brane pod uwagę. Zamiast pisania ifów dane są umieszczone w słowniku.
+    Dostęp do danych odbywa się po kluczu, który podał użytkownik.
+    """
     try:
       return self.slownikDlugosci[dlugosc]
     except KeyError:
-      print >>sys.stderr, 'Liczba długości musi mieścić się w przedziale <3;9>\n'
+      print >>sys.stderr, 'Liczba długości musi mieścić się w przedziale <3;9>.\n'
       pomoc()
       sys.exit(2)
 
   def stworzRandomy(self, zakres):
+    """
+    Tworzy randomowe liczby i umieszcza je w liście.
+    """
     while self.ilosc:
       rLiczba = random.randint(zakres[0], zakres[1])
       if rLiczba not in self._listaLiczb:
@@ -126,6 +133,9 @@ class ListaLiczb(object):
       self.ilosc -= 1
 
   def wyswietl(self):
+    """
+    Wyświetla liczby.
+    """
     for liczba in self._listaLiczb:
       print "\n    {0}".format(liczba)
     print
@@ -133,8 +143,10 @@ class ListaLiczb(object):
 
 
 def pomoc():
-  u"""Wyświetla pomoc."""
-  print u"""Dostępne polecenia:
+  """
+  Wyświetla pomoc.
+  """
+  print """Dostępne polecenia:
   python pamiec.py DODAJ 'slowo1,slowo2,slowo3' - dodaje podane słowa
   python pamiec.py LMS <liczba> - wyświetla określoną liczbę słów (Łańcuchowa metoda skojarzeń)
   python pamiec.py OR <liczba> - wyświetla określoną liczbę słów" (Metody: Zakładki obrazkowe oraz rymowanki liczbowe)
