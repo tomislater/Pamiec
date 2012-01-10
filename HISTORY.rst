@@ -2,6 +2,10 @@ Historia
 --------
 
 
+10-01-2012 - 0.4.5
+++++++++++++++++++
+Kilka zmian w kodzie nie wpływających znacznie na działanie programu.
+
 8-01-2012 - 0.4.4
 +++++++++++++++++
 Historia oraz opis programu są teraz w osobnych plikach. Powinny być teraz bardziej przejrzyste.
