@@ -87,4 +87,5 @@ Wymagania:
 Historia:
 ---------
 Historia zmian (wraz z datą i numerem wersji) dostępna jest tutaj_.
+
 .. _tutaj: https://github.com/tomislater/Pamiec/blob/master/HISTORY.rst
