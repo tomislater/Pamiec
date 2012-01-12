@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ =  'tomislater@gmail.com'
 import codecs, os, random, sys
-__version__ = '0.4.5'
+__version__ = '0.4.6'
 
 
 
@@ -24,7 +24,7 @@ class Slownik(object):
         try:
             for slowo in codecs.open(os.path.join(os.path.dirname(__file__), 'slowa.txt'),
                                      encoding='utf-8'):
-                self.slownik[slowo[:-1]] = ''
+                self.slownik[slowo[:-1]] = slowo[0]
         except IOError:
             print 'Program nie znalazł pliku słownika. Sprawdź nazwę słownika. '\
                             'Poprawna nazwa to "slowa.txt". Jeżeli go nie ma, to go stwórz.\n'
@@ -49,6 +49,21 @@ class Slownik(object):
                               'w', encoding='utf-8')
         for slowo in self.slownik:
             slownik.write('%s\n' % slowo)
+
+    def zakladkiAlfabetyczne(self):
+        """
+        Wyświetla metodę 'Zakładki alfabetyczne'
+        """
+        kopia = self.stworzKopieSlownika()
+        print '\n|', '-'*19, '|'
+        for litera in u'abcćdefghijklłmnoprsśtuwzż':
+            while True:
+                krotkaRandSlowo = random.choice(kopia.items())
+                if krotkaRandSlowo[1] == litera:
+                    print '| ' + litera.upper() + '. ' + krotkaRandSlowo[0]
+                    del kopia[krotkaRandSlowo[0]]
+                    break
+        print '|', '-'*19, '|'
 
     def _or(self, liczba_slow):
         """
@@ -156,6 +171,7 @@ def pomoc():
     python pamiec.py DODAJ 'slowo1,slowo2,slowo3' - dodaje podane słowa
     python pamiec.py LMS <liczba> - wyświetla określoną liczbę słów (Łańcuchowa metoda skojarzeń)
     python pamiec.py OR <liczba> - wyświetla określoną liczbę słów" (Metody: Zakładki obrazkowe oraz rymowanki liczbowe)
+    python pamiec.py ZA - wyświetla słowa do zakładek alfabetycznych
     python pamiec.py LICZBY <liczbaIlosc> <liczbaDlugosc> - wyswietla randomowe liczby o zadanej dlugosci
     python pamiec.py POMOC - wyświetla pomoc
     python pamiec.py WERSJA - wyświetla aktualną wersję programu
@@ -164,7 +180,8 @@ def pomoc():
     python pamiec.py DODAJ 'dupa,pleb,lumpenproletariat'
     python pamiec.py LMS 10
     python pamiec.py OR 20
-    python pamiec.py LICZBY 10 7\n"""
+    python pamiec.py LICZBY 10 7
+    python pamiec.py ZA\n"""
   
   
   
@@ -185,7 +202,7 @@ if __name__ == '__main__':
     elif len(sys.argv) == 3:
         if sys.argv[1] == 'DODAJ':
             Slownik().dodaj(sys.argv[2])
-        elif sys.argv[1] == 'OR':
+        elif sys.argv[1] == 'OR' and sys.argv[2] != '0':
             try:
                 Slownik()._or(int(sys.argv[2]))
             except ValueError:
@@ -204,6 +221,8 @@ if __name__ == '__main__':
             pomoc()
         elif sys.argv[1] == 'WERSJA':
             print 'Wersja programu:', __version__, '\n'
+        elif sys.argv[1] == 'ZA':
+            Slownik().zakladkiAlfabetyczne()
         else:
             pomoc()
     else:

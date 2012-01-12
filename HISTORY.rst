@@ -1,6 +1,9 @@
 Historia
 --------
 
+12-01-2012 - 0.4.6
+++++++++++++++++++
+Dostępna jest nowa metoda: Zakładki alfabetyczne.
 
 10-01-2012 - 0.4.5
 ++++++++++++++++++

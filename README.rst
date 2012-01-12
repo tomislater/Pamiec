@@ -2,7 +2,7 @@ Pamięć: Program do ćwiczenia pamięci.
 =====================================
 
 **Pamięć** jest programem przeznaczonym do ćwiczenia pamięci długotrwałej jak i zarówno krótkotrwałej.
-Program został stworzony z potrzeby samodoskonalenia się.
+Program został stworzony z potrzeby samodoskonalenia się. Więcej dowiesz się czytając książkę: "Pamięć na zawołanie - Tony Buzan".
 
 
 Pamięć długotrwała:
@@ -10,9 +10,10 @@ Pamięć długotrwała:
 - ŁMS (Łańcuchowa metoda skojarzeń)
 - Zakładki obrazkowe
 - Rymowanki liczbowe
+- Zakładki alfabetyczne
 
 
-ŁMS wywołuje się osobno, natomiast 2 i 3 metodę wywołuje się razem.
+ŁMS oraz zakładki alfabetyczne wywołuje się osobno, natomiast 2 i 3 metodę wywołuje się razem.
 Tak postanowiłem ponieważ w 2 i 3 metodzie korzysta się z liczb, a bezsensu je wywoływać osobnymi poleceniami.
 
 
@@ -53,6 +54,24 @@ Korzystanie z zakładek obrazkowych oraz rymowanek liczbowych. ::
     | 3   horyzont
     | 4   artykuł
     | 5   gałąź
+    | ------------------- |
+
+Korzystanie z zakładek alfabetycznych. ::
+
+    python pamiec.py ZA
+
+    | ------------------- |
+    | A. animacja
+    | B. błąd
+    | C. całka
+    | Ć. ćwierćnuta
+    | D. debian
+    .....
+    | T. taśma
+    | U. ulice
+    | W. widły
+    | Z. złoto
+    | Ż. żukika
     | ------------------- |
 
 Wyświetlanie losowych liczb (pamięć krótkotrwała). ::
