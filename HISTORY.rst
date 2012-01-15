@@ -1,6 +1,10 @@
 Historia
 --------
 
+15-01-2012 - 0.4.7
+++++++++++++++++++
+Naprawiłem błąd w metodzie "Zakładki alfabetyczne", który rzucał błąd, jeżeli nie znalazł jakiegoś wyrazu zaczynającego się od danej litery.
+
 12-01-2012 - 0.4.6
 ++++++++++++++++++
 Dostępna jest nowa metoda: Zakładki alfabetyczne.

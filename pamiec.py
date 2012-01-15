@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ =  'tomislater@gmail.com'
 import codecs, os, random, sys
-__version__ = '0.4.6'
+__version__ = '0.4.7'
 
 
 
@@ -54,14 +54,20 @@ class Slownik(object):
         """
         Wyświetla metodę 'Zakładki alfabetyczne'
         """
-        kopia = self.stworzKopieSlownika()
+
         print '\n|', '-'*19, '|'
-        for litera in u'abcćdefghijklłmnoprsśtuwzż':
+        for litera in u'abcćdefghijklłmnoóprsśtuwzźż':
+            kopia = self.stworzKopieSlownika()
             while True:
-                krotkaRandSlowo = random.choice(kopia.items())
-                if krotkaRandSlowo[1] == litera:
-                    print '| ' + litera.upper() + '. ' + krotkaRandSlowo[0]
-                    del kopia[krotkaRandSlowo[0]]
+                try:
+                    krotkaRandSlowo = random.choice(kopia.items())
+                    if krotkaRandSlowo[1] == litera:
+                        print '| ' + litera.upper() + '. ' + krotkaRandSlowo[0]
+                        break
+                    else:
+                        del kopia[krotkaRandSlowo[0]]
+                except IndexError:
+                    print '| ' + litera.upper() + '. ' + '-' * 10
                     break
         print '|', '-'*19, '|'
 
