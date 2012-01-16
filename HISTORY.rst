@@ -1,6 +1,10 @@
 Historia
 --------
 
+16-01-2012 - 0.4.8
+++++++++++++++++++
+Przyspieszyłem działanie algorytmu w metodzie "Zakładki alfabetyczne". Jest teraz naprawdę szybki.
+
 15-01-2012 - 0.4.7
 ++++++++++++++++++
 Naprawiłem błąd w metodzie "Zakładki alfabetyczne", który rzucał błąd, jeżeli nie znalazł jakiegoś wyrazu zaczynającego się od danej litery.

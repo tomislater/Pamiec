@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ =  'tomislater@gmail.com'
 import codecs, os, random, sys
-__version__ = '0.4.7'
+__version__ = '0.4.8'
 
 
 
@@ -38,7 +38,7 @@ class Slownik(object):
         slowa = slowa.split(',')
         for slowo in slowa:
             if slowo != '' and len(slowo) > 1:
-                self.slownik[codecs.decode(slowo, 'utf-8')] = ''
+                self.slownik[codecs.decode(slowo, 'utf-8')] = slowo[0]
         self.zapisz_slownik()
 
     def zapisz_slownik(self):
@@ -54,21 +54,20 @@ class Slownik(object):
         """
         Wyświetla metodę 'Zakładki alfabetyczne'
         """
+        slownikDoZA = {}
+        for krotkaSlowo in self.slownik.items():
+            if krotkaSlowo[1] in slownikDoZA.keys():
+                slownikDoZA[krotkaSlowo[1]] += [krotkaSlowo[0]]
+            else:
+                slownikDoZA[krotkaSlowo[1]] = [krotkaSlowo[0]]
 
         print '\n|', '-'*19, '|'
         for litera in u'abcćdefghijklłmnoóprsśtuwzźż':
-            kopia = self.stworzKopieSlownika()
-            while True:
-                try:
-                    krotkaRandSlowo = random.choice(kopia.items())
-                    if krotkaRandSlowo[1] == litera:
-                        print '| ' + litera.upper() + '. ' + krotkaRandSlowo[0]
-                        break
-                    else:
-                        del kopia[krotkaRandSlowo[0]]
-                except IndexError:
-                    print '| ' + litera.upper() + '. ' + '-' * 10
-                    break
+            try:
+                randSlowo = random.choice(slownikDoZA[litera])
+                print '| ' + litera.upper() + '. ' + randSlowo
+            except KeyError:
+                print '| ' + litera.upper() + '. ' + '-' * 10
         print '|', '-'*19, '|'
 
     def _or(self, liczba_slow):
