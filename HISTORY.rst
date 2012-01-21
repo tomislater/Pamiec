@@ -1,6 +1,10 @@
 Historia
 --------
 
+21-01-2012 - 0.5
+++++++++++++++++
+Refaktoryzacja plus kilkadziesiąt nowych słów.
+
 16-01-2012 - 0.4.8
 ++++++++++++++++++
 Przyspieszyłem działanie algorytmu w metodzie "Zakładki alfabetyczne". Jest teraz naprawdę szybki.

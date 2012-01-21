@@ -1,184 +1,156 @@
 # -*- coding: utf-8 -*-
+import os
+import sys
+import codecs
+import random
+
+
+__version__ = '0.5'
 __author__ =  'tomislater@gmail.com'
-import codecs, os, random, sys
-__version__ = '0.4.8'
 
 
-
-class Slownik(object):
-    """
-    Tworzy słownik w którym przechowywane są słowa.
-    """
+class DictionaryMain(object):
+    """Creates a dictionary in which stores are words."""
 
     def __init__(self):
-        """
-        Wywołuje ładowanie słownik do 'słownika pythonowego'.
-        """
-        self.zaladuj_slownik()
+        """Invoke loads the dictionary."""
+        self.load_dictionary()
 
-    def zaladuj_slownik(self):
-        """
-        Ładuje słownik do 'słownika pythonowego'.
-        """
-        self.slownik = {}
+    def load_dictionary(self):
+        """Loads the dictionary."""
+        self.dictionary_ = {}
         try:
-            for slowo in codecs.open(os.path.join(os.path.dirname(__file__), 'slowa.txt'),
+            for word in codecs.open(os.path.join(os.path.dirname(__file__), 'slowa.txt'),
                                      encoding='utf-8'):
-                self.slownik[slowo[:-1]] = slowo[0]
+                self.dictionary_[word[:-1]] = word[0]
         except IOError:
             print 'Program nie znalazł pliku słownika. Sprawdź nazwę słownika. '\
                             'Poprawna nazwa to "slowa.txt". Jeżeli go nie ma, to go stwórz.\n'
-            pomoc()
+            help_()
             sys.exit(2)
 
-    def dodaj(self, slowa):
-        """
-        Dodaje słowa przechwycone z lini poleceń do 'słownika pythonowego.'
-        """
-        slowa = slowa.split(',')
-        for slowo in slowa:
-            if slowo != '' and len(slowo) > 1:
-                self.slownik[codecs.decode(slowo, 'utf-8')] = slowo[0]
-        self.zapisz_slownik()
+    def adds(self, words):
+        """Adds words from command line into python dictionary."""
+        words = words.split(',')
+        for word in words:
+            if word != '' and len(word) > 1:
+                self.dictionary_[codecs.decode(word, 'utf-8')] = word[0]
+        self.save_dictionary()
 
-    def zapisz_slownik(self):
-        """
-        Zapisuje 'pythonowy słownik' do pliku
-        """
-        slownik = codecs.open(os.path.join(os.path.dirname(__file__), 'slowa.txt'),
+    def save_dictionary(self):
+        """Saves dictionary into a file."""
+        dictionary_ = codecs.open(os.path.join(os.path.dirname(__file__), 'slowa.txt'),
                               'w', encoding='utf-8')
-        for slowo in self.slownik:
-            slownik.write('%s\n' % slowo)
+        for word in self.dictionary_:
+            dictionary_.write('%s\n' % word)
 
-    def zakladkiAlfabetyczne(self):
-        """
-        Wyświetla metodę 'Zakładki alfabetyczne'
-        """
-        slownikDoZA = {}
-        for krotkaSlowo in self.slownik.items():
-            if krotkaSlowo[1] in slownikDoZA.keys():
-                slownikDoZA[krotkaSlowo[1]] += [krotkaSlowo[0]]
+    def alphabetical_bookmarks(self):
+        """Displays a method 'Zakładki alfabetyczne'"""
+        dictionary_ab = {}
+        for tuple_word in self.dictionary_.items():
+            if tuple_word[1] in dictionary_ab.keys():
+                dictionary_ab[tuple_word[1]] += [tuple_word[0]]
             else:
-                slownikDoZA[krotkaSlowo[1]] = [krotkaSlowo[0]]
-
+                dictionary_ab[tuple_word[1]] = [tuple_word[0]]
         print '\n|', '-'*19, '|'
-        for litera in u'abcćdefghijklłmnoóprsśtuwzźż':
+        for letter in u'abcćdefghijklłmnoóprsśtuwzźż':
             try:
-                randSlowo = random.choice(slownikDoZA[litera])
-                print '| ' + litera.upper() + '. ' + randSlowo
+                rand_word = random.choice(dictionary_ab[letter])
+                print '| ' + letter.upper() + '. ' + rand_word
             except KeyError:
-                print '| ' + litera.upper() + '. ' + '-' * 10
+                print '| ' + letter.upper() + '. ' + '-' * 10
         print '|', '-'*19, '|'
 
-    def _or(self, liczba_slow):
+    def _or(self, number_thewords):
         """
-        Odpowiada za wyświetlanie metod:
+        Displays a methods:
           - zakładki obrazkowe
           - rymowanki liczbowe
         """
-        slownikKopia = self.stworzKopieSlownika()
+        dictionary_copy = self.create_dict_copy()
         print '\n|', '-'*19, '|'
         try:
-            for liczbaSlowa in xrange(liczba_slow):
-                slowo = random.choice(slownikKopia.keys())
-                print '|'.ljust(1), str(liczbaSlowa+1).ljust(3), slowo
-                del slownikKopia[slowo]
+            for nr_word in xrange(number_thewords):
+                slowo = random.choice(dictionary_copy.keys())
+                print '|'.ljust(1), str(nr_word+1).ljust(3), slowo
+                del dictionary_copy[slowo]
         except IndexError:
-            self.wyswietlBladIndexError()
+            self.view_index_error()
         else:
             print '|', '-'*19, '|\n'
 
-    def lms(self, liczba_slow):
-        """
-        Odpowiada za wyświetlenie metody 'Łańcuhowa metoda skojarzeń'.
-        """
-        slownikKopia = self.stworzKopieSlownika()
+    def lms(self, number_thewords):
+        """Displays the method 'Łańcuhowa metoda skojarzeń'."""
+        dictionary_copy = self.create_dict_copy()
         print '\n|', '-'*19, '|'
         try:
-            for liczba in xrange(liczba_slow):
-                slowo = random.choice(slownikKopia.keys())
-                print '|'.ljust(1), slowo
-                del slownikKopia[slowo]
+            while number_thewords:
+                word = random.choice(dictionary_copy.keys())
+                print '|'.ljust(1), word
+                del dictionary_copy[word]
+                number_thewords -= 1
         except IndexError:
-            self.wyswietlBladIndexError()
+            self.view_index_error()
         else:
             print '|', '-'*19, '|\n'
 
-    def stworzKopieSlownika(self):
-        """
-        Tworzy kopię słownika.
-        """
+    def create_dict_copy(self):
+        """Creates copy of a dictionary."""
         import copy
-        slownikKopia = copy.copy(self.slownik)
-        return slownikKopia
+        return copy.copy(self.dictionary_)
 
-    def wyswietlBladIndexError(self):
-        """
-        Wyświetla błąd związany z podaniem zbyt dużego zakresu co do ilości słów do wyświetlenia.
-        """
+    def view_index_error(self):
+        """Displays the error if user input more the number than number the words in file."""
         print '|', '-'*19, '|'
         print '\nSprawdź, plik. Najprawdopodobniej, nie ma w nim tyle słów.\nWyświetliłem ile dało radę.\n'
 
 
-
-class ListaLiczb(object):
-    """
-    Klasa odpowiadająca utworzenie i wyświetlenie listy liczb.
-    """
-    _listaLiczb = []
-    slownikDlugosci = {3: (100, 999), 4: (1000, 9999), 5: (10000, 99999), 6: (100000, 999999), 7: (1000000, 9999999),
+class ListNumbers(object):
+    """Class creates and shows the random numbers."""
+    numbers_ = []
+    dict_ranges = {3: (100, 999), 4: (1000, 9999), 5: (10000, 99999), 6: (100000, 999999), 7: (1000000, 9999999),
                      8: (10000000, 99999999), 9: (100000000, 999999999),}
 
-    def __init__(self, ilosc, dlugosc):
-        zakres = self.zwrocZakres(dlugosc)
-        self.ilosc = ilosc
-        self.stworzRandomy(zakres)
-        self.wyswietl()
+    def __init__(self, amount, lenght_):
+        scope = self.ret_scope(lenght_)
+        self.amount = amount
+        self.creates_random(scope)
+        self.show_()
 
-    def zwrocZakres(self, dlugosc):
-        """
-        Zwraca zakres liczb jakie mają być brane pod uwagę.
-        Zamiast pisania ifów dane są umieszczone w słowniku.
-        Dostęp do danych odbywa się po kluczu, który podał użytkownik.
-        """
+    def ret_scope(self, lenght_):
+        """Return a scope."""
         try:
-            return self.slownikDlugosci[dlugosc]
+            return self.dict_ranges[lenght_]
         except KeyError:
             print >>sys.stderr, 'Liczba długości musi mieścić się w przedziale <3;9>.\n'
-            pomoc()
+            help_()
             sys.exit(2)
 
-    def stworzRandomy(self, zakres):
-        """
-        Tworzy randomowe liczby i umieszcza je w liście.
-        """
-        while self.ilosc:
-            rLiczba = random.randint(zakres[0], zakres[1])
-            if rLiczba not in self._listaLiczb:
-                self._listaLiczb.append(rLiczba)
-            self.ilosc -= 1
+    def creates_random(self, scope):
+        """Creates the random numbers and puts them into list."""
+        while self.amount:
+            r_number = random.randint(scope[0], scope[1])
+            if r_number not in self.numbers_:
+                self.numbers_.append(r_number)
+            self.amount -= 1
 
-    def wyswietl(self):
-        """
-        Wyświetla liczby.
-        """
-        for liczba in self._listaLiczb:
-            print "\n    {0}".format(liczba)
+    def show_(self):
+        """Shows a numbers."""
+        for nr in self.numbers_:
+            print "\n    {0}".format(nr)
         print
 
 
-
-def pomoc():
-    """
-    Wyświetla pomoc.
-    """
+def help_():
+    """Shows the help."""
+    
     print """Dostępne polecenia:
     python pamiec.py DODAJ 'slowo1,slowo2,slowo3' - dodaje podane słowa
     python pamiec.py LMS <liczba> - wyświetla określoną liczbę słów (Łańcuchowa metoda skojarzeń)
     python pamiec.py OR <liczba> - wyświetla określoną liczbę słów" (Metody: Zakładki obrazkowe oraz rymowanki liczbowe)
     python pamiec.py ZA - wyświetla słowa do zakładek alfabetycznych
     python pamiec.py LICZBY <liczbaIlosc> <liczbaDlugosc> - wyswietla randomowe liczby o zadanej dlugosci
-    python pamiec.py POMOC - wyświetla pomoc
+    python pamiec.py POMOC - wyświetla help_
     python pamiec.py WERSJA - wyświetla aktualną wersję programu
   
     Przykłady:
@@ -189,46 +161,45 @@ def pomoc():
     python pamiec.py ZA\n"""
   
   
-  
 if __name__ == '__main__':
     if len(sys.argv) == 4 and sys.argv[1] == 'LICZBY':
         try:
             ilosc = int(sys.argv[2])
             dlugosc = int(sys.argv[3])
-            if ilosc == 0:
-                print >>sys.stderr, 'Argument ilość powinien wynosić więcej niż 0...\n'
-                pomoc()
-                sys.exit(2)
         except ValueError:
             print >>sys.stderr, 'Argumentami muszą być liczby\n'
-            pomoc()
+            help_()
             sys.exit(2)
-        ListaLiczb(ilosc, dlugosc)
+        if ilosc == 0:
+                print >>sys.stderr, 'Argument ilość powinien wynosić więcej niż 0...\n'
+                help_()
+                sys.exit(2)
+        ListNumbers(ilosc, dlugosc)
     elif len(sys.argv) == 3:
         if sys.argv[1] == 'DODAJ':
-            Slownik().dodaj(sys.argv[2])
+            DictionaryMain().adds(sys.argv[2])
         elif sys.argv[1] == 'OR' and sys.argv[2] != '0':
             try:
-                Slownik()._or(int(sys.argv[2]))
+                DictionaryMain()._or(int(sys.argv[2]))
             except ValueError:
-                pomoc()
+                help_()
                 print 'Argument musi być liczbą.\n'
         elif sys.argv[1] == 'LMS':
             try:
-                Slownik().lms(int(sys.argv[2]))
+                DictionaryMain().lms(int(sys.argv[2]))
             except ValueError:
-                pomoc()
+                help_()
                 print 'Argument musi być liczbą.\n'
         else:
-            pomoc()
+            help_()
     elif len(sys.argv) == 2:
         if sys.argv[1] == 'POMOC':
-            pomoc()
+            help_()
         elif sys.argv[1] == 'WERSJA':
             print 'Wersja programu:', __version__, '\n'
         elif sys.argv[1] == 'ZA':
-            Slownik().zakladkiAlfabetyczne()
+            DictionaryMain().alphabetical_bookmarks()
         else:
-            pomoc()
+            help_()
     else:
-        pomoc()
+        help_()
