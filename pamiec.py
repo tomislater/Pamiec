@@ -20,8 +20,9 @@ class DictionaryMain(object):
         """Loads the dictionary."""
         self.dictionary_ = {}
         try:
-            for word in codecs.open(os.path.join(os.path.dirname(__file__), 'slowa.txt'),
-                                     encoding='utf-8'):
+            for word in codecs.open(os.path.join(os.path.dirname(__file__),
+                                                 'slowa.txt'),
+                                    encoding='utf-8'):
                 self.dictionary_[word[:-1]] = word[0]
         except IOError:
             print 'Program nie znalazł pliku słownika. Sprawdź nazwę słownika. '\
@@ -108,8 +109,9 @@ class DictionaryMain(object):
 class ListNumbers(object):
     """Class creates and shows the random numbers."""
     numbers_ = []
-    dict_ranges = {3: (100, 999), 4: (1000, 9999), 5: (10000, 99999), 6: (100000, 999999), 7: (1000000, 9999999),
-                     8: (10000000, 99999999), 9: (100000000, 999999999),}
+    dict_ranges = {3: (100, 999), 4: (1000, 9999), 5: (10000, 99999),
+                   6: (100000, 999999), 7: (1000000, 9999999),
+                   8: (10000000, 99999999), 9: (100000000, 999999999),}
 
     def __init__(self, amount, lenght_):
         scope = self.ret_scope(lenght_)
