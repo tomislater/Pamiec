@@ -1,6 +1,10 @@
 Historia
 --------
 
+16-03-20012 - 0.5.1
++++++++++++++++++++
+Lekka refaktoryzacja kodu.
+
 21-01-2012 - 0.5
 ++++++++++++++++
 Refaktoryzacja plus kilkadziesiąt nowych słów.

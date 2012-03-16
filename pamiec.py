@@ -1,23 +1,32 @@
 # -*- coding: utf-8 -*-
+
 import os
 import sys
 import codecs
 import random
 
 
-__version__ = '0.5'
+__version__ = '0.5.1'
 __author__ =  'tomislater@gmail.com'
 
 
 class DictionaryMain(object):
-    """Creates a dictionary in which stores are words."""
+    """
+        Creates a dictionary in which stores are words.
+    """
 
     def __init__(self):
-        """Invoke loads the dictionary."""
+        """
+            Invoke loads the dictionary.
+        """
+        
         self.load_dictionary()
 
     def load_dictionary(self):
-        """Loads the dictionary."""
+        """
+            Loads the dictionary.
+        """
+        
         self.dictionary_ = {}
         try:
             for word in codecs.open(os.path.join(os.path.dirname(__file__),
@@ -31,7 +40,10 @@ class DictionaryMain(object):
             sys.exit(2)
 
     def adds(self, words):
-        """Adds words from command line into python dictionary."""
+        """
+            Adds words from command line into python dictionary.
+        """
+        
         words = words.split(',')
         for word in words:
             if word != '' and len(word) > 1:
@@ -39,14 +51,20 @@ class DictionaryMain(object):
         self.save_dictionary()
 
     def save_dictionary(self):
-        """Saves dictionary into a file."""
+        """
+            Saves dictionary into a file.
+        """
+        
         dictionary_ = codecs.open(os.path.join(os.path.dirname(__file__), 'slowa.txt'),
                               'w', encoding='utf-8')
         for word in self.dictionary_:
             dictionary_.write('%s\n' % word)
 
     def alphabetical_bookmarks(self):
-        """Displays a method 'Zakładki alfabetyczne'"""
+        """
+            Displays a method 'Zakładki alfabetyczne'
+        """
+        
         dictionary_ab = {}
         for tuple_word in self.dictionary_.items():
             if tuple_word[1] in dictionary_ab.keys():
@@ -64,10 +82,11 @@ class DictionaryMain(object):
 
     def _or(self, number_thewords):
         """
-        Displays a methods:
-          - zakładki obrazkowe
-          - rymowanki liczbowe
+            Displays a methods:
+              - zakładki obrazkowe
+              - rymowanki liczbowe
         """
+        
         dictionary_copy = self.create_dict_copy()
         print '\n|', '-'*19, '|'
         try:
@@ -81,7 +100,10 @@ class DictionaryMain(object):
             print '|', '-'*19, '|\n'
 
     def lms(self, number_thewords):
-        """Displays the method 'Łańcuhowa metoda skojarzeń'."""
+        """
+            Displays the method 'Łańcuhowa metoda skojarzeń'.
+        """
+        
         dictionary_copy = self.create_dict_copy()
         print '\n|', '-'*19, '|'
         try:
@@ -96,18 +118,27 @@ class DictionaryMain(object):
             print '|', '-'*19, '|\n'
 
     def create_dict_copy(self):
-        """Creates copy of a dictionary."""
+        """
+            Creates copy of a dictionary.
+        """
+        
         import copy
         return copy.copy(self.dictionary_)
 
     def view_index_error(self):
-        """Displays the error if user input more the number than number the words in file."""
+        """
+            Displays the error if user input more the number than number the words in file.
+        """
+        
         print '|', '-'*19, '|'
         print '\nSprawdź, plik. Najprawdopodobniej, nie ma w nim tyle słów.\nWyświetliłem ile dało radę.\n'
 
 
 class ListNumbers(object):
-    """Class creates and shows the random numbers."""
+    """
+        Class creates and shows the random numbers.
+    """
+    
     numbers_ = []
     dict_ranges = {3: (100, 999), 4: (1000, 9999), 5: (10000, 99999),
                    6: (100000, 999999), 7: (1000000, 9999999),
@@ -120,7 +151,10 @@ class ListNumbers(object):
         self.show_()
 
     def ret_scope(self, lenght_):
-        """Return a scope."""
+        """
+            Return a scope.
+        """
+        
         try:
             return self.dict_ranges[lenght_]
         except KeyError:
@@ -129,7 +163,10 @@ class ListNumbers(object):
             sys.exit(2)
 
     def creates_random(self, scope):
-        """Creates the random numbers and puts them into list."""
+        """
+            Creates the random numbers and puts them into list.
+        """
+        
         while self.amount:
             r_number = random.randint(scope[0], scope[1])
             if r_number not in self.numbers_:
@@ -137,14 +174,19 @@ class ListNumbers(object):
             self.amount -= 1
 
     def show_(self):
-        """Shows a numbers."""
+        """
+            Shows a numbers.
+        """
+        
         for nr in self.numbers_:
             print "\n    {0}".format(nr)
         print
 
 
 def help_():
-    """Shows the help."""
+    """
+        Shows the help.
+    """
     
     print """Dostępne polecenia:
     python pamiec.py DODAJ 'slowo1,slowo2,slowo3' - dodaje podane słowa
@@ -205,3 +247,4 @@ if __name__ == '__main__':
             help_()
     else:
         help_()
+
