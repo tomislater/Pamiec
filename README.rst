@@ -27,81 +27,76 @@ Przykłady:
 
 Korzystanie z ŁMS (Łańcuchowa metoda skojarzeń). ::
 
-    python pamiec.py LMS <liczba>
-    python pamiec.py LMS 10
-    
-    | ------------------- |
-    | płatki
-    | głos
-    | muchomor
-    | mina
-    | matematyka
-    | ogródek
-    | forex
-    | cyklop
-    | wschód
-    | piłka
-    | ------------------- |
+  python pamiec.py LMS <liczba>
+  python pamiec.py LMS 10
+
+  | ------------------- |
+  | płatki
+  | głos
+  | muchomor
+  | mina
+  | matematyka
+  | ogródek
+  | forex
+  | cyklop
+  | wschód
+  | piłka
+  | ------------------- |
 
 Korzystanie z zakładek obrazkowych oraz rymowanek liczbowych. ::
 
-    python pamiec.py OR <liczba>
-    python pamiec.py OR 5
-    
-    | ------------------- |
-    | 1   atlas
-    | 2   papier
-    | 3   horyzont
-    | 4   artykuł
-    | 5   gałąź
-    | ------------------- |
+  python pamiec.py OR <liczba>
+  python pamiec.py OR 5
+
+  | ------------------- |
+  | 1   atlas
+  | 2   papier
+  | 3   horyzont
+  | 4   artykuł
+  | 5   gałąź
+  | ------------------- |
 
 Korzystanie z zakładek alfabetycznych. ::
 
-    python pamiec.py ZA
+  python pamiec.py ZA
 
-    | ------------------- |
-    | A. animacja
-    | B. błąd
-    | C. całka
-    | Ć. ćwierćnuta
-    | D. debian
-    .....
-    | T. taśma
-    | U. ulice
-    | W. widły
-    | Z. złoto
-    | Ż. żukika
+  | ------------------- |
+  | A. animacja
+  | B. błąd
+  | C. całka
+  | Ć. ćwierćnuta
+  | D. debian
+  .....
+  | T. taśma
+  | U. ulice
+  | W. widły
+  | Z. złoto
+  | Ż. żukika
     | ------------------- |
 
 Wyświetlanie losowych liczb (pamięć krótkotrwała). ::
 
-    python pamiec.py LICZBY <liczbaIlosc> <liczbaDlugosc>
-    python pamiec.py LICZBY 5 9
-    
-    555764831
-    
-    830254494
-    
-    862802343
-    
-    545794040
-    
-    576921441
-    
+  python pamiec.py LICZBY <liczbaIlosc> <liczbaDlugosc>
+  python pamiec.py LICZBY 5 9
+
+  555764831
+
+  830254494
+
+  862802343
+
+  545794040
+
+  576921441
+
 Dodawanie słów. ::
 
-    python pamiec.py DODAJ <slowa>
-    python pamiec.py DODAJ 'wierzba,okoń,dłoń,most'
+  python pamiec.py DODAJ <slowa>
+  python pamiec.py DODAJ 'wierzba,okoń,dłoń,most'
 
 Pomoc. ::
 
-    python pamiec.py POMOC
-
-
-Wymagania:
-----------
-- Python 2.6
+  python pamiec.py POMOC
 
 Historia:
 ---------

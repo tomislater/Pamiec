@@ -1,6 +1,10 @@
 Historia
 --------
 
+01-06-2012 - 0.5.2
+++++++++++++++++++
+Jadę w pociągu to sobie coś tam porobiłem ;) Głównie refaktoryzację kodu.
+
 16-03-20012 - 0.5.1
 +++++++++++++++++++
 Lekka refaktoryzacja kodu.
